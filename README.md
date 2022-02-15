@@ -43,6 +43,7 @@ Abra um terminal e faça o clone do projeto e logo em seguida entre na pasta:
 
 Ainda dentro da pasta pd-api e rode o comando para subir o banco com docker, mantenha esse terminal aberto enquanto estiver usando a aplicação:
     
+    sed -i 's/\r$//' ./db/01-init.sh
     docker-compose up
     
 <br>
