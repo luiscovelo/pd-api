@@ -2,7 +2,6 @@
 set -e
 export PGPASSWORD=postgres;
 psql -v ON_ERROR_STOP=1 --username "postgres" --dbname "pdhours" <<-EOSQL
-  CREATE DATABASE pdhours;
   \connect pdhours;
   BEGIN;
   create table squad(
