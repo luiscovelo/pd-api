@@ -1,5 +1,4 @@
 #!/bin/bash
-sed -i -e 's/\r$//' 01-init.sh
 set -e
 export PGPASSWORD=postgres;
 psql -v ON_ERROR_STOP=1 --username "postgres" --dbname "pdhours" <<-EOSQL
