@@ -46,6 +46,8 @@ Ainda dentro da pasta pd-api e rode o comando para subir o banco com docker, man
     sed -i 's/\r$//' ./db/01-init.sh
     docker-compose up
     
+Se por algum motivo, o banco não subir com o Docker, por gentileza, crie manualmente conforme na seção "Banco de Dados".
+
 <br>
 
 Agora temos o banco de dados rodando, vamos subir nossa aplicação. Para isso, abra outro terminal dentro da pasta "pd-api" e rode os dois comandos, o primeiro pode demorar um pouco, mas aguarde até finalizar.
