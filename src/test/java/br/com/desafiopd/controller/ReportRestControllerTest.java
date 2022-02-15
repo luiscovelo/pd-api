@@ -8,7 +8,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.ArrayList;
 
+import javax.persistence.EntityManager;
+
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -19,7 +22,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.desafiopd.exception.ResourceNotFoundException;
-import br.com.desafiopd.model.dto.ReportSquadHourDto;
 import br.com.desafiopd.model.entities.Report;
 import br.com.desafiopd.service.ReportService;
 
@@ -31,6 +33,9 @@ public class ReportRestControllerTest {
 	
 	@MockBean
 	ReportService reportService;
+	
+	@Mock
+	private EntityManager entityManager; 
 	
 	@Test
 	public void shouldBeCreateReport() throws Exception {
@@ -188,8 +193,7 @@ public class ReportRestControllerTest {
 	@Test
 	public void shouldBeGetTotalHoursSquad() throws Exception {
 		
-		when(reportService.getTotalHoursSquad(Mockito.anyLong(), Mockito.any(), Mockito.any())).thenReturn(Mockito.any(
-				ReportSquadHourDto.class));
+		when(reportService.getTotalHoursSquad(Mockito.anyLong(), Mockito.any(), Mockito.any())).thenReturn(null);
 		
 		mockMvc
 			.perform(get("/report/get-total-hours-squad?squadId=1&initialDate=2022-02-01&finalDate=2022-02-28"))
@@ -201,8 +205,7 @@ public class ReportRestControllerTest {
 	@Test
 	public void shouldBeHttpStatusBadRequestGetTotalHoursSquadWithMissingParamSquadId() throws Exception {
 		
-		when(reportService.getTotalHoursSquad(Mockito.anyLong(), Mockito.any(), Mockito.any())).thenReturn(Mockito.any(
-				ReportSquadHourDto.class));
+		when(reportService.getTotalHoursSquad(Mockito.anyLong(), Mockito.any(), Mockito.any())).thenReturn(null);
 		
 		mockMvc
 			.perform(get("/report/get-total-hours-squad?initialDate=2022-02-01&finalDate=2022-02-28"))
@@ -214,8 +217,7 @@ public class ReportRestControllerTest {
 	@Test
 	public void shouldBeHttpStatusBadRequestGetTotalHoursSquadWithMissingParamInitialdate() throws Exception {
 		
-		when(reportService.getTotalHoursSquad(Mockito.anyLong(), Mockito.any(), Mockito.any())).thenReturn(Mockito.any(
-				ReportSquadHourDto.class));
+		when(reportService.getTotalHoursSquad(Mockito.anyLong(), Mockito.any(), Mockito.any())).thenReturn(null);
 		
 		mockMvc
 			.perform(get("/report/get-total-hours-squad?squadId=1&finalDate=2022-02-28"))
@@ -227,7 +229,7 @@ public class ReportRestControllerTest {
 	@Test
 	public void shouldBeHttpStatusBadRequestGetTotalHoursSquadWithMissingParamFinaldate() throws Exception {
 		
-		when(reportService.getTotalHoursSquad(Mockito.anyLong(), Mockito.any(), Mockito.any())).thenReturn(Mockito.any(ReportSquadHourDto.class));
+		when(reportService.getTotalHoursSquad(Mockito.anyLong(), Mockito.any(), Mockito.any())).thenReturn(null);
 		
 		mockMvc
 			.perform(get("/report/get-total-hours-squad?squadId=1&initialDate=2022-02-01"))
